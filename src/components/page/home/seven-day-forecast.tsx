@@ -11,10 +11,6 @@ const SevenDayForecast: FC = () => {
       gap={'16px'}
       sx={{
         width: '100%',
-        maxWidth: {
-          xs: 'none',
-          md: '600px',
-        },
       }}
     >
       <BasicText
@@ -46,7 +42,7 @@ const SevenDayForecast: FC = () => {
               gap={'12px'}
               sx={{
                 padding: '12px 16px',
-                borderRadius: '16px',
+                borderRadius: '100px',
                 backgroundColor: `${colors.white}33`,
               }}
             >
@@ -56,11 +52,15 @@ const SevenDayForecast: FC = () => {
                     xs: '16px',
                     md: '20px',
                   },
-                  width: '96px',
+                  width: '200px',
                   textTransform: 'capitalize',
+                  span: {
+                    fontSize: '12px',
+                    fontWeight: 400,
+                  },
                 }}
               >
-                {day.dayName}
+                {day.dayName} <span>({day.date})</span>
               </BasicText>
 
               <Stack direction="row" alignItems="center" gap={'8px'}>

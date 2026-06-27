@@ -26,11 +26,14 @@ const CityStatus: FC = () => {
           fontSize: '14px',
           fontWeight: 400,
           color: colors.white,
-          padding: '2px',
+          padding: '4px 8px',
           textTransform: 'none',
           visibility: 'visible',
           opacity: 1,
           transition: 'all 1s ease',
+          textAlign: 'left',
+          justifyContent: 'flex-start',
+          borderRadius: '100px',
 
           '&:not(&:hover) .MuiButton-icon ': {
             visibility: 'hidden',

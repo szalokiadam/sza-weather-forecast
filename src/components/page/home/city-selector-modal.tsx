@@ -1,6 +1,4 @@
-import { FC, useState } from 'react';
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -9,8 +7,8 @@ import {
   Stack,
   TextField,
 } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
 import { CitySearchResult, searchCities } from '@/api/weather';
+import { FC, useEffect, useState } from 'react';
 import { useWeatherContext } from './context';
 import { BasicText, colors } from './styles';
 
@@ -21,28 +19,41 @@ const CitySelectorModal: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSearch = async () => {
-    if (!search.trim()) {
+  useEffect(() => {
+    const searchValue = search.trim();
+
+    if (!searchValue) {
       setResults([]);
+      setError('');
+      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true);
-    setError('');
+    const timeoutId = setTimeout(() => {
+      setIsLoading(true);
+      setError('');
 
-    try {
-      const response = await searchCities(search);
-      setResults(response.results);
+      void searchCities(searchValue)
+        .then((response) => {
+          setResults(response.results);
 
-      if (!response.results.length) {
-        setError('Nincs találat erre a városra.');
-      }
-    } catch {
-      setError('Nem sikerült lekérni a városokat.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+          if (!response.results.length) {
+            setError('Nincs találat erre a városra.');
+          }
+        })
+        .catch(() => {
+          setResults([]);
+          setError('Nem sikerült lekérni a városokat.');
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 1_500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [search]);
 
   const handleSelectCity = async (city: CitySearchResult) => {
     await loadWeather(city);
@@ -62,29 +73,19 @@ const CitySelectorModal: FC = () => {
             <TextField
               fullWidth
               label="Város neve"
+              name="city-search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                  void handleSearch();
-                }
+              InputProps={{
+                sx: {
+                  borderRadius: '100px',
+                },
               }}
               sx={{
                 flex: '1 1 auto',
               }}
+              type="search"
             />
-            <Button
-              variant="contained"
-              sx={{
-                flex: '0 0 auto',
-                padding: '8px 16px',
-              }}
-              onClick={() => void handleSearch()}
-              disabled={isLoading}
-              startIcon={<SearchIcon />}
-            >
-              Keresés
-            </Button>
           </Stack>
 
           {isLoading && (
@@ -109,7 +110,7 @@ const CitySelectorModal: FC = () => {
           <List>
             {results.map((result) => (
               <ListItemButton key={result.id} onClick={() => void handleSelectCity(result)}>
-                <Stack gap={'4px'}>
+                <Stack gap="4px">
                   <BasicText
                     sx={{
                       color: colors.black,

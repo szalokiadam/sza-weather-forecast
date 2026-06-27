@@ -40,6 +40,7 @@ const Header: FC = () => {
       alignItems="center"
       justifyContent="space-between"
       sx={{
+        flex: '0 0 auto',
         padding: '8px 40px',
         background: `${colors.white}DD`,
       }}

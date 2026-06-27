@@ -7,6 +7,7 @@ import SevenDayForecast from './seven-day-forecast';
 import Footer from './footer';
 import { useWeatherContext } from './context';
 import Header from './header';
+import WeeklyTemperatureChart from './weekly-temperature-chart';
 
 const HomePage: FC = () => {
   const { selectedCity } = useWeatherContext();
@@ -15,7 +16,7 @@ const HomePage: FC = () => {
       sx={{
         background: `linear-gradient(180deg, ${colors.lightBlue1} 0%, ${colors.lightBlue2} 100%)`,
         width: '100%',
-        height: '100vh',
+        minHeight: '100vh',
       }}
     >
       <Header />
@@ -46,10 +47,33 @@ const HomePage: FC = () => {
           }}
         >
           <CityStatus />
-          <SevenDayForecast />
+          <Stack
+            sx={{
+              width: '100%',
+              maxWidth: {
+                xs: 'none',
+                md: '600px',
+              },
+              gap: {
+                xs: '12px',
+                md: '40px',
+              },
+            }}
+          >
+            <SevenDayForecast />
+            <WeeklyTemperatureChart />
+          </Stack>
         </Stack>
       </Stack>
-      <Footer />
+      <Stack
+        sx={{
+          opacity: selectedCity?.id ? 1 : 0,
+          visibility: selectedCity ? 'visible' : 'hidden',
+          transition: 'all 1s ease',
+        }}
+      >
+        <Footer />
+      </Stack>
       <CitySelectorModal />
     </Stack>
   );

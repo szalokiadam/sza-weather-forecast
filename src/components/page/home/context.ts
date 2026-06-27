@@ -84,6 +84,9 @@ export const WeatherProvider: FC<WeatherProviderProps> = ({ children }) => {
     }
   }, [loadWeather]);
 
+  console.log('weather',weather);
+
+  
   return createElement(
     WeatherContext.Provider,
     {
