@@ -31,4 +31,5 @@ Ez egy időjárás-előrejelző webalkalmazás, amely `Next.js`, `React`, `TypeS
 
 
 ## Az oldal elérhető ezen a linken
-https://sza-weather-forecast.vercel.app/
+
+👉 **[Időjárás előrejelzés megnyitása](https://sza-weather-forecast.vercel.app/)**
