@@ -1,9 +1,14 @@
 import { FC } from 'react';
 import { Stack } from '@mui/material';
-import { BasicText, colors } from './styles';
+import { colors } from './styles';
 import CityStatus from './city-status';
+import CitySelectorModal from './city-selector-modal';
+import SevenDayForecast from './seven-day-forecast';
+import Footer from './footer';
+import { useWeatherContext } from './context';
 
 const HomePage: FC = () => {
+  const { selectedCity } = useWeatherContext();
   return (
     <Stack
       sx={{
@@ -12,14 +17,38 @@ const HomePage: FC = () => {
         height: '100vh',
       }}
     >
-      <BasicText>Kezdolap</BasicText>
       <Stack
         sx={{
           padding: '80px 40px',
+
+          opacity: selectedCity?.id ? 1 : 0,
+          visibility: selectedCity ? 'visible' : 'hidden',
+          transition: 'all 1s ease',
         }}
       >
-        <CityStatus />
+        <Stack
+          direction={{
+            xs: 'column',
+            md: 'row',
+          }}
+          sx={{
+            alignItems: {
+              xs: 'flex-start',
+              md: 'flex-start',
+            },
+            justifyContent: 'center',
+            gap: {
+              xs: '40px',
+              md: '80px',
+            },
+          }}
+        >
+          <CityStatus />
+          <SevenDayForecast />
+        </Stack>
       </Stack>
+      <Footer />
+      <CitySelectorModal />
     </Stack>
   );
 };

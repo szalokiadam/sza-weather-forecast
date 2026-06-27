@@ -36,8 +36,9 @@ export const colors = {
 
 // TEXTS
 export const BasicText = styled(Typography)<TypographyProps>(() => ({
-  fontFamily: 'Roboto',
+  fontFamily: 'Inter',
   fontSize: '15px',
   fontWeight: 400,
-  color: colors.black,
+  lineHeight: 1,
+  color: colors.white,
 }));
