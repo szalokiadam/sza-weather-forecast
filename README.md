@@ -28,3 +28,7 @@ Ez egy időjárás-előrejelző webalkalmazás, amely `Next.js`, `React`, `TypeS
 - `npm run build` - production build készítése
 - `npm run start` - production build futtatása
 - `npm run lint` - kódellenőrzés futtatása
+
+
+## Az oldal elérhető ezen a linken
+https://sza-weather-forecast.vercel.app/
