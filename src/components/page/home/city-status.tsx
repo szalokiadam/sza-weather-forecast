@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
+import { Edit as EditIcon } from '@mui/icons-material';
 import { useWeatherContext } from './context';
-import { BasicText } from './styles';
+import { BasicText, colors } from './styles';
 
 const CityStatus: FC = () => {
   const { selectedCity, weather, isWeatherLoading, weatherError, openCitySelector } =
@@ -17,15 +18,29 @@ const CityStatus: FC = () => {
 
   return (
     <Stack gap={'8px'}>
-      <BasicText
+      <Button
+        variant="text"
         onClick={openCitySelector}
         sx={{
+          fontFamily: 'Inter',
           fontSize: '14px',
-          cursor: 'pointer',
+          fontWeight: 400,
+          color: colors.white,
+          padding: '2px',
+          textTransform: 'none',
+          visibility: 'visible',
+          opacity: 1,
+          transition: 'all 1s ease',
+
+          '&:not(&:hover) .MuiButton-icon ': {
+            visibility: 'hidden',
+            opacity: 0,
+          },
         }}
+        endIcon={<EditIcon />}
       >
         {selectedCity?.name ?? 'Válassz várost'}
-      </BasicText>
+      </Button>
       <BasicText
         sx={{
           fontSize: '48px',

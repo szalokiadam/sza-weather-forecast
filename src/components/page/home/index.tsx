@@ -6,6 +6,7 @@ import CitySelectorModal from './city-selector-modal';
 import SevenDayForecast from './seven-day-forecast';
 import Footer from './footer';
 import { useWeatherContext } from './context';
+import Header from './header';
 
 const HomePage: FC = () => {
   const { selectedCity } = useWeatherContext();
@@ -17,6 +18,7 @@ const HomePage: FC = () => {
         height: '100vh',
       }}
     >
+      <Header />
       <Stack
         sx={{
           padding: '80px 40px',

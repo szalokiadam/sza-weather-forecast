@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getDayName, getWeatherCondition } from './utils';
+import { getDayName, getWeatherCondition } from '@/api/weather/utils';
 
 type OpenMeteoForecastResponse = {
   current: {
