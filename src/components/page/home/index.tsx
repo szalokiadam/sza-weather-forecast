@@ -8,13 +8,17 @@ import Footer from './footer';
 import { useWeatherContext } from './context';
 import Header from './header';
 import WeeklyTemperatureChart from './weekly-temperature-chart';
+import backgroundImage from '../../../../public/clouds.jpg';
 
 const HomePage: FC = () => {
   const { selectedCity } = useWeatherContext();
   return (
     <Stack
       sx={{
-        background: `linear-gradient(180deg, ${colors.lightBlue1} 0%, ${colors.lightBlue2} 100%)`,
+        // backgroundColor: `linear-gradient(180deg, ${colors.lightBlue1} 0%, ${colors.lightBlue2} 100%)`,
+        backgroundImage: `url(${backgroundImage.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
         width: '100%',
         minHeight: '100vh',
       }}

@@ -17,13 +17,21 @@ const CityStatus: FC = () => {
   }
 
   return (
-    <Stack gap={'8px'}>
+    <Stack
+      gap={'8px'}
+      sx={{
+        background: `${colors.black}88`,
+        padding: '12px',
+        borderRadius: '20px',
+        backdropFilter: 'blur(4px)',
+      }}
+    >
       <Button
         variant="text"
         onClick={openCitySelector}
         sx={{
           fontFamily: 'Inter',
-          fontSize: '14px',
+          fontSize: '20px',
           fontWeight: 400,
           color: colors.white,
           padding: '4px 8px',

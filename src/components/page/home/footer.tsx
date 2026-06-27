@@ -12,19 +12,22 @@ const Footer: FC = () => {
       sx={{
         marginTop: '20px',
         padding: '20px',
-        background: `${colors.white}88`,
+        background: `${colors.black}CC`,
+        backdropFilter: 'blur(4px)',
       }}
     >
       <BasicText
-        sx={{
-          color: colors.black,
-        }}
+        sx={
+          {
+            //   color: colors.black,
+          }
+        }
       >
         Készítette:
       </BasicText>
       <BasicText
         sx={{
-          color: colors.black,
+          //   color: colors.black,
           fontWeight: 800,
         }}
       >

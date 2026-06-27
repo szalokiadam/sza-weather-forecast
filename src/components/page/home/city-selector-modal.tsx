@@ -85,6 +85,7 @@ const CitySelectorModal: FC = () => {
                 flex: '1 1 auto',
               }}
               type="search"
+              autoComplete="off"
             />
           </Stack>
 

@@ -10,12 +10,15 @@ const SevenDayForecast: FC = () => {
     <Stack
       gap={'16px'}
       sx={{
-        width: '100%',
+        background: `${colors.black}88`,
+        padding: '20px',
+        borderRadius: '20px',
+        backdropFilter: 'blur(4px)',
       }}
     >
       <BasicText
         sx={{
-          fontSize: '18px',
+          fontSize: '20px',
           fontWeight: 500,
         }}
       >
@@ -44,6 +47,10 @@ const SevenDayForecast: FC = () => {
                 padding: '12px 16px',
                 borderRadius: '100px',
                 backgroundColor: `${colors.white}33`,
+                flexWrap: {
+                  xs: 'wrap',
+                  md: 'nowrap',
+                },
               }}
             >
               <BasicText
@@ -54,6 +61,11 @@ const SevenDayForecast: FC = () => {
                   },
                   width: '200px',
                   textTransform: 'capitalize',
+
+                  flex: {
+                    xs: '1 1 100%',
+                    md: '0 0 auto',
+                  },
                   span: {
                     fontSize: '12px',
                     fontWeight: 400,
